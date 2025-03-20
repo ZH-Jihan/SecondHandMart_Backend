@@ -23,7 +23,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 // Apply router middleware to all routes under '/api'
-app.use('/api', router);
+app.use('/', router);
 
 // Global Error Handler
 app.use(globalErrorHandler);

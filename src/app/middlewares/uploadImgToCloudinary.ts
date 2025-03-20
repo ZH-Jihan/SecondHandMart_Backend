@@ -42,6 +42,16 @@ export const uploadImgToCloudinary = (
   });
 };
 
+
+export const uploadMultipleImgsToCloudinary = (
+  files: Array<{ path: string; name: string }>
+): Promise<Array<Record<string, unknown>>> => {
+  // Process each file upload in parallel
+  return Promise.all(
+    files.map((file) => uploadImgToCloudinary(file.path, file.name))
+  );
+};
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, process.cwd() + '/uploads/');
